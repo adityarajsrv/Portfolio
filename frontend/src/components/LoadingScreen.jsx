@@ -67,7 +67,7 @@ const LoadingScreen = ({ onComplete }) => {
   return (
     <div className="fixed inset-0 z-9999 w-screen h-screen text-black">
       <div className="h-full w-full bg-[#101318] flex justify-center items-center">
-        <div className="follow absolute bg-[#167a7a] h-0.5 w-0 left-0 top-1/2 -translate-y-1/2 z-20"></div>
+        <div className="follow absolute bg-[#25c5c5] h-0.5 w-0 left-0 top-1/2 -translate-y-1/2 z-20"></div>
         <div className="sweep absolute inset-0 bg-[#101318] translate-x-full z-30"></div>
         <div
           className="hide absolute left-0 bg-white h-0.5 top-1/2 -translate-y-1/2"
