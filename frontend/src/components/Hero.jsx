@@ -60,7 +60,7 @@ const Hero = () => {
           <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
         </div>
       </div>
-      <div className="absolute right-105 bottom-80 w-48 bg-yellow-300/95 backdrop-blur-sm py-2 px-4 rounded-2xl shadow-xl float-animation border border-yellow-400/50">
+      <div className="absolute right-105 bottom-82 w-48 bg-yellow-300/95 backdrop-blur-sm py-2 px-4 rounded-2xl shadow-xl float-animation border border-yellow-400/50">
         <div className="flex justify-start mb-1">
           <div className="text-2xl text-yellow-600">
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
@@ -69,8 +69,7 @@ const Hero = () => {
           </div>
         </div>
         <p className="text-black text-xs italic font-medium leading-relaxed">
-          Write code like poetry, debug like a detective, and build like an
-          architect.
+          From concept to deployment, solve challenges, and build systems that scale.
         </p>
         <div className="mt-4 flex items-center">
           <div className="w-8 h-px bg-yellow-600 mr-3"></div>
