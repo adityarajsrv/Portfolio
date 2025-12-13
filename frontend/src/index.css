@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Floating animation */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px) rotate(-1deg);
@@ -28,7 +27,6 @@
     inset 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
-/* Optional: Add a subtle glow effect */
 .float-animation::before {
   content: '';
   position: absolute;
