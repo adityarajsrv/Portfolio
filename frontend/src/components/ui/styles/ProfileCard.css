@@ -118,9 +118,15 @@
 }
 
 .pc-shine {
+  -webkit-mask-image: var(--icon);
   mask-image: var(--icon);
+  -webkit-mask-repeat: repeat;
   mask-repeat: repeat;
+  -webkit-mask-size: 150%;
   mask-size: 150%;
+  -webkit-mask-position: 
+    top calc(200% - (var(--background-y) * 5)) 
+    left calc(100% - var(--background-x));
   mask-position: 
     top calc(200% - (var(--background-y) * 5)) 
     left calc(100% - var(--background-x));
@@ -287,6 +293,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+  -webkit-backdrop-filter: none;
   backdrop-filter: none;
   pointer-events: none;
 }
@@ -303,6 +310,7 @@
   align-items: center;
   justify-content: space-between;
   background: rgba(16, 19, 24, 0.85); 
+  -webkit-backdrop-filter: blur(30px) saturate(1.8);
   backdrop-filter: blur(30px) saturate(1.8);
   border: 1px solid rgba(39, 203, 203, 0.2); 
   border-radius: calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)));
@@ -365,6 +373,7 @@
   color: #26D868; 
   cursor: pointer;
   transition: all 0.2s ease;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background: rgba(38, 216, 104, 0.1); 
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;

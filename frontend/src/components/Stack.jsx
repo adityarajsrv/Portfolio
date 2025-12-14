@@ -122,7 +122,7 @@ const Stack = () => {
             {active === key && (
               <motion.span
                 layoutId="underline"
-                className="absolute left-0 bottom-0 h-[3px] w-full bg-[#27CBCB]"
+                className="absolute left-0 bottom-0 h-1 w-full bg-[#27CBCB]"
               />
             )}
           </button>
