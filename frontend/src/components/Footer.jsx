@@ -30,7 +30,6 @@ const Footer = () => {
             <span>by Aditya</span>
           </motion.div>
           <div className="flex items-center gap-6 text-sm">
-            <span className="text-gray-700">•</span>
             <a
               href="https://github.com/adityarajsrv"
               target="_blank"
