@@ -216,7 +216,7 @@ const Projects = () => {
       </div>
       <div
         className="group relative flex flex-row justify-center items-center
-    space-x-1 text-[#27CBCB] cursor-pointer"
+    space-x-1 text-[#27CBCB] cursor-pointer mr-4"
       >
         <a
           href="https://github.com/adityarajsrv"
