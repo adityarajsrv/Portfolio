@@ -30,12 +30,6 @@ const Footer = () => {
             <span>by Aditya</span>
           </motion.div>
           <div className="flex items-center gap-6 text-sm">
-            <a
-              href="#top"
-              className="text-gray-500 hover:text-gray-300 transition-colors"
-            >
-              Back to top
-            </a>
             <span className="text-gray-700">•</span>
             <a
               href="https://github.com/adityarajsrv"
