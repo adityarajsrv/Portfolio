@@ -107,19 +107,19 @@ const ProjectCard = ({ project }) => {
 
   return (
     <motion.div
-      whileHover={{ y: -6 }}
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      whileHover={{ y: -8 }}
       transition={{ duration: 0.25 }}
-      className="group rounded-xl border border-gray-700/40
-        bg-gray-900/20 backdrop-blur overflow-hidden"
+      className="group rounded-xl border border-gray-700/40 bg-gray-900/20 backdrop-blur overflow-hidden"
     >
       <div className="relative h-44 overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
-          className="h-full w-full object-cover
-            scale-105 blur-[2px]
-            group-hover:blur-0 group-hover:scale-100
-            transition-all duration-500"
+          className="h-full w-full object-cover scale-105 blur-[2px] group-hover:blur-0 group-hover:scale-100 transition-all duration-500"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
         <motion.div
@@ -128,21 +128,23 @@ const ProjectCard = ({ project }) => {
           transition={{ duration: 1.2 }}
           className={`absolute inset-0 bg-linear-to-r ${project.accent} to-transparent opacity-60`}
         />
-
         <div className="absolute bottom-3 left-4">
           <h3 className="text-lg font-semibold text-white">{project.title}</h3>
           <p className="text-xs text-[#27CBCB]">{project.subtitle}</p>
         </div>
       </div>
+
       <div className="px-5 py-4 space-y-4">
         <p className="text-gray-300 text-sm leading-relaxed">
           {project.description}
         </p>
+
         <div className="flex flex-wrap gap-2 text-xs text-gray-400">
           {project.highlights.map((h) => (
             <span key={h}>• {h}</span>
           ))}
         </div>
+
         <div className="flex flex-wrap gap-2">
           {project.tech
             .slice(0, expanded ? project.tech.length : 4)
@@ -151,26 +153,21 @@ const ProjectCard = ({ project }) => {
                 key={t}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="px-2 py-1 text-xs rounded-md
-                  bg-gray-950 border border-gray-700/40
-                  text-gray-400"
+                className="px-2 py-1 text-xs rounded-md bg-gray-950 border border-gray-700/40 text-gray-400"
               >
                 {t}
               </motion.span>
             ))}
-
           {project.tech.length > 4 && (
             <button
               onClick={() => setExpanded(!expanded)}
-              className="px-2 py-1 text-xs rounded-md
-                border border-gray-700/40
-                text-[#27CBCB] hover:bg-[#27CBCB]/10
-                transition-colors"
+              className="px-2 py-1 text-xs rounded-md border border-gray-700/40 text-[#27CBCB] hover:bg-[#27CBCB]/10 transition-colors"
             >
               {expanded ? "− less" : `+${project.tech.length - 4}`}
             </button>
           )}
         </div>
+
         <div className="flex gap-4 text-gray-400 pt-2">
           <a
             href={project.github}
@@ -198,7 +195,13 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => {
   return (
-    <section className="ml-65 p-5 space-y-8 max-w-6xl mr-36">
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="ml-65 p-5 space-y-8 max-w-6xl mr-36"
+    >
       <div>
         <h2 className="text-4xl font-bold text-[#27CBCB]">
           Things I&apos;ve Built
@@ -208,29 +211,32 @@ const Projects = () => {
           engineering.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.12 } },
+        }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
         {projects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
-      </div>
-      <div
-        className="group relative flex flex-row justify-center items-center
-    space-x-1 text-[#27CBCB] cursor-pointer mr-4"
-      >
+      </motion.div>
+
+      <div className="flex justify-center text-[#27CBCB]">
         <a
           href="https://github.com/adityarajsrv"
           target="_blank"
           rel="noreferrer"
-          className="group inline-flex items-center gap-2 text-[#27CBCB]"
+          className="inline-flex items-center gap-2 group"
         >
           <span className="relative">
             View all projects on GitHub
-            <span
-              className="absolute left-1/2 -bottom-1 h-0.5 w-0
-        bg-[#27CBCB]
-        transition-all duration-300 ease-out
-        group-hover:w-full group-hover:left-0"
-            />
+            <span className="absolute left-1/2 -bottom-1 h-0.5 w-0 bg-[#27CBCB] transition-all duration-300 group-hover:w-full group-hover:left-0" />
           </span>
           <ExternalLink
             size={16}
@@ -238,7 +244,7 @@ const Projects = () => {
           />
         </a>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

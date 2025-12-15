@@ -5,11 +5,12 @@ import Stack from "../components/Stack";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-// import { Contact } from "lucide-react";
+import Background from "../components/ui/Background";
 
 const Portfolio = () => {
   return (
-    <div className="w-full min-h-screen bg-[#101318] text-gray-300 overflow-x-hidden">
+    <div className="relative w-full min-h-screen text-gray-300 overflow-x-hidden">
+      <Background />
       <Navbar />
       <Hero />
       <div className="flex flex-row items-center ml-50 mt-30 p-5 space-x-3">

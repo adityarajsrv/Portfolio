@@ -3,6 +3,35 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const fadeScale = {
+  hidden: { opacity: 0, scale: 0.96 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 const Contact = () => {
   const [copied, setCopied] = useState(false);
   const email = "adityarajsrvofficial@gmail.com";
@@ -19,23 +48,24 @@ const Contact = () => {
       href: "https://github.com/adityarajsrv",
       label: "GitHub",
       color: "hover:text-gray-100 hover:bg-gray-800",
-      border: "border-gray-800"
+      border: "border-gray-800",
     },
     {
       icon: <FaLinkedin className="w-5 h-5" />,
       href: "https://www.linkedin.com/in/adityarajsrv",
       label: "LinkedIn",
       color: "hover:text-blue-400 hover:bg-blue-900/20",
-      border: "border-blue-900/30"
+      border: "border-blue-900/30",
     },
   ];
 
   return (
     <section className="max-w-2xl ml-120 px-4 py-12">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.35 }}
         className="relative"
       >
         <div className="absolute inset-0 bg-linear-to-br from-gray-900/50 to-gray-900/30 rounded-3xl -z-10" />
@@ -44,16 +74,22 @@ const Contact = () => {
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700/50">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-xs text-gray-300">Available for opportunities</span>
+              <span className="text-xs text-gray-300">
+                Available for opportunities
+              </span>
             </div>
             <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-gray-100 to-gray-400">
               Get in Touch
             </h2>
             <p className="text-gray-400 max-w-md mx-auto text-lg">
-              Open to collaborations, interesting projects, and new opportunities
+              Open to collaborations, interesting projects, and new
+              opportunities
             </p>
           </div>
-          <div className="relative max-w-sm mx-auto">
+          <motion.div
+            variants={fadeScale}
+            className="relative max-w-sm mx-auto"
+          >
             <motion.button
               onClick={handleCopyEmail}
               whileHover={{ scale: 1.02 }}
@@ -70,8 +106,18 @@ const Contact = () => {
                     <p className="text-gray-200 font-medium">{email}</p>
                   </div>
                 </div>
-                <div className={`p-2 rounded-lg transition-all duration-300 ${copied ? 'bg-emerald-900/30 text-emerald-400' : 'bg-gray-800/50 text-gray-400 group-hover:bg-gray-700/50 group-hover:text-gray-300'}`}>
-                  {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                <div
+                  className={`p-2 rounded-lg transition-all duration-300 ${
+                    copied
+                      ? "bg-emerald-900/30 text-emerald-400"
+                      : "bg-gray-800/50 text-gray-400 group-hover:bg-gray-700/50 group-hover:text-gray-300"
+                  }`}
+                >
+                  {copied ? (
+                    <Check className="w-4 h-4" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
                 </div>
               </div>
             </motion.button>
@@ -84,8 +130,8 @@ const Contact = () => {
                 Copied to clipboard
               </motion.div>
             )}
-          </div>
-          <div className="space-y-4">
+          </motion.div>
+          <motion.div variants={fadeUp} className="space-y-4">
             <p className="text-gray-500 text-sm">Connect elsewhere</p>
             <div className="flex justify-center gap-3">
               {socialLinks.map((link) => (
@@ -107,16 +153,21 @@ const Contact = () => {
                 </motion.a>
               ))}
             </div>
-          </div>
-          <div className="pt-6 border-t border-gray-800/30">
+          </motion.div>
+          <motion.div
+            variants={fadeUp}
+            className="pt-6 border-t border-gray-800/30"
+          >
             <div className="inline-flex items-center gap-2 text-sm text-gray-400">
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                 <span>Currently open to:</span>
               </div>
-              <span className="text-gray-300">Full-time roles • Contract work • Collaborations</span>
+              <span className="text-gray-300">
+                Full-time roles • Contract work • Collaborations
+              </span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

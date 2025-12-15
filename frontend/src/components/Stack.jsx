@@ -53,7 +53,7 @@ const categories = {
     { name: "GitHub", icon: <FaGitAlt /> },
     { name: "Vercel", icon: <SiVercel /> },
     { name: "Render", icon: <SiRender /> },
-    { name: "AWS", icon: <FaAws /> }
+    { name: "AWS", icon: <FaAws /> },
   ],
 };
 
@@ -84,7 +84,13 @@ const Stack = () => {
   );
 
   return (
-    <div className="ml-65 p-5 space-y-12">
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="ml-65 p-5 space-y-12"
+    >
       <div className="flex flex-row justify-between items-start">
         <div className="max-w-2xl">
           <h2 className="text-4xl font-bold text-[#27CBCB]">My Tech Stack</h2>
@@ -185,7 +191,7 @@ const Stack = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.section>
   );
 };
 
