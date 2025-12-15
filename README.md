@@ -146,6 +146,18 @@ yarn build
 3. Modify colors in Tailwind configuration
 4. Update project data in `Projects.jsx` and `Stack.jsx`
 
+## 📄 License
+
+This is a personal project for development and portfolio purposes.
+
+---
+
+## ⭐ Support the Project
+
+If you find this project helpful or interesting, please consider giving it a star on GitHub! Your support helps me continue to improve and maintain the project.
+
+---
+
 ## 👨‍💻 Author
 
 **Aditya Raj Srivastava**
