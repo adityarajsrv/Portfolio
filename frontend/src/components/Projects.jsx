@@ -32,7 +32,6 @@ const projects = [
       "scikit-learn",
     ],
     github: "https://github.com/adityarajsrv/CareerQuill",
-    live: "#",
     image: careerquillImg,
     accent: "from-[#27CBCB]/40",
   },
