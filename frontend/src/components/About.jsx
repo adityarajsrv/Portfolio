@@ -58,6 +58,7 @@ const About = () => {
             showUserInfo
             enableTilt
             enableMobileTilt={false}
+            location="India"
           />
         </motion.div>
         <motion.div
@@ -89,9 +90,13 @@ const About = () => {
             variants={fadeUp}
             className="bg-linear-to-br from-gray-900/50 to-transparent p-5 rounded-xl border border-gray-800/50"
           >
-            <p className="text-[#80978F] italic">
-              &quot;Curiosity drives how I approach technology — turning ideas
-              into intuitive, usable software.&quot;
+            <p className="text-[#80978F] text-base leading-relaxed italic">
+              {" "}
+              &quot;Curiosity drives how I approach technology - from solving
+              coding problems to developing{" "}
+              <span className="text-gray-300">intuitive, useful software</span>.
+              I enjoy transforming abstract ideas into tangible, usable
+              solutions.&quot;{" "}
             </p>
           </motion.div>
           <motion.div
@@ -168,7 +173,7 @@ const About = () => {
                   </a>
                   <button
                     onClick={handleDownload}
-                    className="px-4 py-2 bg-linear-to-r from-[#27CBCB] to-[#26D868] rounded-lg"
+                    className="px-4 py-2 bg-linear-to-r from-[#27CBCB] to-[#26D868] rounded-lg cursor-pointer"
                   >
                     <Download size={18} />
                   </button>

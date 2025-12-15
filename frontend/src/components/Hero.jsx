@@ -2,7 +2,10 @@ import TextType from "./ui/TextType";
 
 const Hero = () => {
   return (
-    <div className="ml-60 mt-15 p-5 flex flex-col space-y-6 relative">
+    <section
+      id="top"
+      className="pt-20 ml-60 p-5 flex flex-col mt-20 space-y-6 relative"
+    >
       <p className="text-lg text-gray-400 font-mono">
         <span className="text-[#27CBCB]">const</span> developer ={" "}
         <span className="text-gray-300">&quot;Aditya Raj Srivastava&quot;</span>
@@ -89,7 +92,7 @@ const Hero = () => {
       <div className="absolute top-20 right-60 opacity-10">
         <div className="text-6xl font-bold text-gray-500">{"</>"}</div>
       </div>
-    </div>
+    </section>
   );
 };
 
