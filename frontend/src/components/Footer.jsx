@@ -5,14 +5,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden ml-25">
+    <footer className="relative overflow-hidden px-4 sm:px-6 lg:ml-25">
       <div className="h-px w-full bg-linear-to-r from-transparent via-gray-800 to-transparent" />
       <div className="max-w-6xl mx-auto px-4 py-6">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-col items-center gap-4"
+          className="flex flex-col items-center gap-3 sm:gap-4"
         >
           <div className="text-center space-y-2">
             <p className="text-xs text-gray-600 max-w-md">
@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
           </div>
           <motion.div
-            className="flex items-center gap-2 text-sm text-gray-500"
+            className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 text-sm text-gray-500"
             whileHover={{ scale: 1.05 }}
           >
             <span>Made with</span>
@@ -29,7 +29,7 @@ const Footer = () => {
             <Coffee className="w-4 h-4 text-amber-500" />
             <span>by Aditya</span>
           </motion.div>
-          <div className="flex items-center gap-6 text-sm">
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-sm">
             <a
               href="https://github.com/adityarajsrv"
               target="_blank"
@@ -38,7 +38,7 @@ const Footer = () => {
             >
               GitHub
             </a>
-            <span className="text-gray-700">•</span>
+            <span className="text-gray-700 hidden sm:block">•</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="text-gray-500 hover:text-gray-300 transition-colors"
@@ -50,7 +50,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-row justify-center items-center mb-5">
         <p className="text-sm text-gray-500">
-              &copy; {currentYear} • All rights reserved
+          &copy; {currentYear} • All rights reserved
         </p>
       </div>
     </footer>

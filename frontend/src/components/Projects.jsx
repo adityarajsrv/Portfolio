@@ -115,7 +115,7 @@ const ProjectCard = ({ project }) => {
       transition={{ duration: 0.25 }}
       className="group rounded-xl border border-gray-700/40 bg-gray-900/20 backdrop-blur overflow-hidden"
     >
-      <div className="relative h-44 overflow-hidden">
+      <div className="relative h-40 sm:h-44 overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
@@ -129,23 +129,23 @@ const ProjectCard = ({ project }) => {
           className={`absolute inset-0 bg-linear-to-r ${project.accent} to-transparent opacity-60`}
         />
         <div className="absolute bottom-3 left-4">
-          <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+          <h3 className="text-base sm:text-lg font-semibold text-white">{project.title}</h3>
           <p className="text-xs text-[#27CBCB]">{project.subtitle}</p>
         </div>
       </div>
 
-      <div className="px-5 py-4 space-y-4">
+      <div className="px-4 sm:px-5 py-3 sm:py-4 space-y-3 sm:space-y-4">
         <p className="text-gray-300 text-sm leading-relaxed">
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-2 text-xs text-gray-400">
+        <div className="flex flex-wrap gap-1 sm:gap-2 text-xs text-gray-400">
           {project.highlights.map((h) => (
-            <span key={h}>• {h}</span>
+            <span key={h} className="text-xs">• {h}</span>
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1 sm:gap-2">
           {project.tech
             .slice(0, expanded ? project.tech.length : 4)
             .map((t) => (
@@ -200,15 +200,14 @@ const Projects = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="ml-65 p-5 space-y-8 max-w-6xl mr-36"
+      className="px-4 sm:px-6 md:px-8 lg:ml-65 lg:p-5 space-y-6 sm:space-y-8 max-w-6xl lg:mr-36 mx-auto"
     >
       <div>
-        <h2 className="text-4xl font-bold text-[#27CBCB]">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#27CBCB] text-center lg:text-left">
           Things I&apos;ve Built
         </h2>
-        <p className="mt-2 text-[#80978F] text-lg max-w-xl">
-          Real-world projects focused on system design, scalability, and clean
-          engineering.
+        <p className="mt-2 text-[#80978F] text-base sm:text-lg max-w-xl text-center lg:text-left mx-auto lg:mx-0">
+          Real-world projects focused on system design, scalability, and clean engineering.
         </p>
       </div>
 
@@ -220,7 +219,7 @@ const Projects = () => {
           hidden: {},
           visible: { transition: { staggerChildren: 0.12 } },
         }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
       >
         {projects.map((project) => (
           <ProjectCard key={project.title} project={project} />

@@ -60,7 +60,7 @@ const Contact = () => {
   ];
 
   return (
-    <section className="max-w-2xl ml-120 px-4 py-12">
+    <section className="px-4 sm:px-6 md:px-8 lg:ml-120 mx-auto py-8 sm:py-12 max-w-2xl">
       <motion.div
         variants={container}
         initial="hidden"
@@ -70,18 +70,18 @@ const Contact = () => {
       >
         <div className="absolute inset-0 bg-linear-to-br from-gray-900/50 to-gray-900/30 rounded-3xl -z-10" />
         <div className="absolute inset-0 bg-[radial-linear(circle_at_30%_20%,rgba(39,203,203,0.1),transparent_50%)] -z-10" />
-        <div className="text-center space-y-8 p-8 rounded-2xl border border-gray-800/50 bg-linear-to-b from-gray-900/40 to-gray-900/20 backdrop-blur-sm">
-          <div className="space-y-4">
+        <div className="text-center space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl border border-gray-800/50 bg-linear-to-b from-gray-900/40 to-gray-900/20 backdrop-blur-sm">
+          <div className="space-y-3 sm:space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700/50">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span className="text-xs text-gray-300">
                 Available for opportunities
               </span>
             </div>
-            <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-gray-100 to-gray-400">
+            <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-gray-100 to-gray-400">
               Get in Touch
             </h2>
-            <p className="text-gray-400 max-w-md mx-auto text-lg">
+            <p className="text-gray-400 mx-auto text-base sm:text-lg max-w-md">
               Open to collaborations, interesting projects, and new
               opportunities
             </p>
@@ -96,14 +96,14 @@ const Contact = () => {
               whileTap={{ scale: 0.98 }}
               className="group w-full"
             >
-              <div className="flex items-center justify-between p-4 rounded-xl border border-gray-800 bg-linear-to-r from-gray-900/50 to-gray-800/30 hover:border-gray-700 transition-all duration-300">
+              <div className="flex items-center justify-between p-3 sm:p-4 rounded-xl border border-gray-800 bg-linear-to-r from-gray-900/50 to-gray-800/30 hover:border-gray-700 transition-all duration-300">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gray-700/50 transition-colors">
                     <Mail className="w-4 h-4 text-gray-400 group-hover:text-gray-300" />
                   </div>
                   <div className="text-left">
-                    <p className="text-sm text-gray-400">Email</p>
-                    <p className="text-gray-200 font-medium">{email}</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Email</p>
+                    <p className="text-gray-200 font-medium text-sm sm:text-base truncate max-w-45 sm:max-w-none">{email}</p>
                   </div>
                 </div>
                 <div
@@ -131,9 +131,9 @@ const Contact = () => {
               </motion.div>
             )}
           </motion.div>
-          <motion.div variants={fadeUp} className="space-y-4">
+          <motion.div variants={fadeUp} className="space-y-3 sm:space-y-4">
             <p className="text-gray-500 text-sm">Connect elsewhere</p>
-            <div className="flex justify-center gap-3">
+            <div className="flex flex-col sm:flex-row justify-center gap-3">
               {socialLinks.map((link) => (
                 <motion.a
                   key={link.label}
@@ -141,7 +141,7 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -2 }}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border ${link.border} bg-gray-900/30 backdrop-blur-sm ${link.color} transition-all duration-300 group`}
+                  className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border ${link.border} bg-gray-900/30 backdrop-blur-sm ${link.color} transition-all duration-300 group`}
                 >
                   <div className="transition-transform group-hover:scale-110">
                     {link.icon}
@@ -156,14 +156,14 @@ const Contact = () => {
           </motion.div>
           <motion.div
             variants={fadeUp}
-            className="pt-6 border-t border-gray-800/30"
+            className="pt-4 sm:pt-6 border-t border-gray-800/30"
           >
-            <div className="inline-flex items-center gap-2 text-sm text-gray-400">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-2 text-sm text-gray-400">
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                 <span>Currently open to:</span>
               </div>
-              <span className="text-gray-300">
+              <span className="text-gray-300 text-center sm:text-left">
                 Full-time roles • Contract work • Collaborations
               </span>
             </div>

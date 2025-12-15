@@ -1,18 +1,33 @@
 import TextType from "./ui/TextType";
 
 const Hero = () => {
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const NAVBAR_HEIGHT = 80;
+    const y = el.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section
       id="top"
-      className="pt-20 ml-60 p-5 flex flex-col mt-20 space-y-6 relative"
+      className="pt-20 px-4 md:px-6 lg:ml-60 lg:p-5 flex flex-col mt-20 md:mt-20 space-y-4 md:space-y-6 relative"
     >
-      <p className="text-lg text-gray-400 font-mono">
+      <p className="text-sm md:text-base lg:text-lg text-gray-400 font-mono">
         <span className="text-[#27CBCB]">const</span> developer ={" "}
         <span className="text-gray-300">&quot;Aditya Raj Srivastava&quot;</span>
         ;
       </p>
-      <h2 className="text-7xl font-semibold">Full-Stack Developer</h2>
-      <h2 className="text-7xl font-semibold text-[#80978F]">
+      <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight">
+        Full-Stack Developer
+      </h2>
+      <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[#80978F] leading-tight">
         <TextType
           text={[
             "Building things that matter.",
@@ -28,42 +43,60 @@ const Hero = () => {
           cursorCharacter="|"
         />
       </h2>
-      <p className="text-[#80978F] text-xl mt-3 w-[50%]">
+      <p className="text-[#80978F] text-base md:text-lg lg:text-xl mt-2 lg:mt-3 w-full lg:w-[50%]">
         I craft clean, thoughtful digital experiences. Currently focused on
         building tools that help people work better and live easier.
       </p>
-      <div className="flex flex-row justify-start items-center space-x-5 mt-3">
-        <button className="bg-[#26D868] px-7 py-3 text-gray-800 font-semibold rounded-sm cursor-pointer hover:scale-102 transition-transform duration-200">
-          View Projects <span className="font-extrabold text-lg">&rarr;</span>
+      <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-5 mt-3">
+        <button
+          onClick={() => scrollToSection("projects")}
+          className="bg-[#26D868] px-5 py-3 sm:px-7 sm:py-3 text-gray-800 font-semibold rounded-sm
+      cursor-pointer hover:scale-105 transition-transform duration-200 w-full sm:w-auto text-center"
+        >
+          View Projects <span className="font-extrabold text-lg">→</span>
         </button>
-        <button className="border border-gray-600 px-5 py-3 font-semibold cursor-pointer hover:bg-gray-900 transition-colors duration-200">
+        <button
+          onClick={() => scrollToSection("contact")}
+          className="border border-gray-600 px-5 py-3 font-semibold cursor-pointer
+      hover:bg-gray-900 transition-colors duration-200 w-full sm:w-auto text-center"
+        >
           Get in Touch
         </button>
       </div>
-      <div className="absolute left-20 top-40 opacity-10">
+      <div className="hidden lg:block absolute left-20 top-40 opacity-10">
         <div className="text-8xl font-mono text-gray-500">{`{ }`}</div>
-      </div>
-      <div className="absolute right-40 bottom-40">
+      </div> 
+      <div className="hidden md:block absolute right-10 md:right-20 lg:right-40 bottom-20 md:bottom-32 lg:bottom-40">
         <div className="flex space-x-3 opacity-20">
           <div className="w-2 h-8 bg-[#27CBCB] rounded-full animate-pulse"></div>
           <div className="w-2 h-12 bg-[#26D868] rounded-full animate-pulse delay-100"></div>
           <div className="w-2 h-6 bg-[#80978F] rounded-full animate-pulse delay-200"></div>
         </div>
       </div>
-      <div className="absolute left-40 bottom-20 opacity-10">
-        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      <div className="hidden lg:block absolute left-40 bottom-20 opacity-10">
+        <svg
+          className="w-24 h-24"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1"
+            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+          />
         </svg>
       </div>
-      <div className="absolute right-10 top-1/3">
-        <div className="grid grid-cols-2 gap-2 opacity-20">
-          <div className="w-3 h-3 bg-[#27CBCB] rounded-sm"></div>
-          <div className="w-3 h-3 bg-[#26D868] rounded-sm"></div>
-          <div className="w-3 h-3 bg-[#80978F] rounded-sm"></div>
-          <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
+      <div className="hidden sm:block absolute right-4 md:right-6 lg:right-10 top-1/3 opacity-20">
+        <div className="grid grid-cols-2 gap-2">
+          <div className="w-2 h-2 md:w-3 md:h-3 bg-[#27CBCB] rounded-sm"></div>
+          <div className="w-2 h-2 md:w-3 md:h-3 bg-[#26D868] rounded-sm"></div>
+          <div className="w-2 h-2 md:w-3 md:h-3 bg-[#80978F] rounded-sm"></div>
+          <div className="w-2 h-2 md:w-3 md:h-3 bg-yellow-400 rounded-sm"></div>
         </div>
       </div>
-      <div className="absolute right-105 bottom-82 w-48 bg-yellow-300/95 backdrop-blur-sm py-2 px-4 rounded-2xl shadow-xl float-animation border border-yellow-400/50">
+      <div className="hidden lg:block absolute right-[10%] bottom-1/2 w-48 bg-yellow-300/95 backdrop-blur-sm py-2 px-4 rounded-2xl shadow-xl float-animation border border-yellow-400/50">
         <div className="flex justify-start mb-1">
           <div className="text-2xl text-yellow-600">
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
@@ -72,7 +105,8 @@ const Hero = () => {
           </div>
         </div>
         <p className="text-black text-xs italic font-medium leading-relaxed">
-          From concept to deployment, solve challenges, and build systems that scale.
+          From concept to deployment, solve challenges, and build systems that
+          scale.
         </p>
         <div className="mt-4 flex items-center">
           <div className="w-8 h-px bg-yellow-600 mr-3"></div>
@@ -81,15 +115,18 @@ const Hero = () => {
           </span>
         </div>
       </div>
-      <div className="absolute bottom-10 left-1/3">
-        <div className="flex space-x-2 opacity-30">
-          <div className="font-mono text-sm text-gray-500">{"// developer"}</div>
-          <div className="font-mono text-sm text-gray-500">{"// designer"}</div>
-          <div className="font-mono text-sm text-gray-500">{"// problem-solver"}</div>
+      <div className="hidden md:block absolute bottom-10 left-1/4 lg:left-1/3">
+        <div className="flex flex-wrap space-x-2 opacity-30">
+          <div className="font-mono text-xs md:text-sm text-gray-500">
+            {"// developer"}
+          </div>
+          <div className="font-mono text-xs md:text-sm text-gray-500">{"// designer"}</div>
+          <div className="font-mono text-xs md:text-sm text-gray-500">
+            {"// problem-solver"}
+          </div>
         </div>
       </div>
-
-      <div className="absolute top-20 right-60 opacity-10">
+      <div className="hidden lg:block absolute top-20 right-60 opacity-10">
         <div className="text-6xl font-bold text-gray-500">{"</>"}</div>
       </div>
     </section>

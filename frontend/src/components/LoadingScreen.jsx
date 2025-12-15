@@ -73,7 +73,7 @@ const LoadingScreen = ({ onComplete }) => {
           className="hide absolute left-0 bg-white h-0.5 top-1/2 -translate-y-1/2"
           style={{ width: `${counter}%` }}
         ></div>
-        <p className="hide absolute text-white text-8xl font-medium -translate-y-4">
+        <p className="hide absolute text-white text-4xl sm:text-6xl md:text-8xl font-medium -translate-y-4">
           {counter}%
         </p>
       </div>

@@ -40,12 +40,13 @@ const About = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.3 }}
-        className="flex flex-row justify-between items-start ml-65 p-5 space-x-8"
+        className="flex flex-col lg:flex-row justify-between items-center lg:items-start px-4 sm:px-6 md:px-8 lg:ml-65 lg:p-5 space-y-8 lg:space-y-0 lg:space-x-8"
       >
         <motion.div
           variants={fadeUp}
           whileHover={{ y: -4 }}
           transition={{ type: "spring", stiffness: 200 }}
+          className="w-full max-w-md lg:max-w-none"
         >
           <ProfileCard
             name="Aditya Raj Srivastava"
@@ -63,14 +64,14 @@ const About = () => {
         </motion.div>
         <motion.div
           variants={container}
-          className="flex flex-col justify-center space-y-8 max-w-xl mr-40"
+          className="flex flex-col justify-center space-y-6 md:space-y-8 w-full lg:max-w-xl lg:mr-40"
         >
           <motion.h2
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            className="text-4xl font-semibold leading-tight"
+            className="text-3xl sm:text-4xl font-semibold leading-tight text-center lg:text-left"
           >
             A developer who{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-[#27CBCB] to-[#26D868]">
@@ -79,7 +80,7 @@ const About = () => {
           </motion.h2>
           <motion.div variants={fadeUp} className="relative pl-6">
             <div className="absolute left-0 top-2 w-1 h-20 bg-linear-to-b from-[#27CBCB] to-[#26D868] rounded-full" />
-            <p className="text-gray-300 text-base leading-relaxed">
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
               Final year Computer Science student with a solid foundation in
               software development, committed to creating{" "}
               <span className="text-[#27CBCB]">scalable and reliable</span>{" "}
@@ -88,15 +89,14 @@ const About = () => {
           </motion.div>
           <motion.div
             variants={fadeUp}
-            className="bg-linear-to-br from-gray-900/50 to-transparent p-5 rounded-xl border border-gray-800/50"
+            className="bg-linear-to-br from-gray-900/50 to-transparent p-4 sm:p-5 rounded-xl border border-gray-800/50"
           >
-            <p className="text-[#80978F] text-base leading-relaxed italic">
-              {" "}
+            <p className="text-[#80978F] text-sm sm:text-base leading-relaxed italic">
               &quot;Curiosity drives how I approach technology - from solving
               coding problems to developing{" "}
               <span className="text-gray-300">intuitive, useful software</span>.
               I enjoy transforming abstract ideas into tangible, usable
-              solutions.&quot;{" "}
+              solutions.&quot;
             </p>
           </motion.div>
           <motion.div
@@ -106,10 +106,10 @@ const About = () => {
             viewport={{ once: true, amount: 0.4 }}
             className="space-y-3"
           >
-            <motion.h3 variants={fadeUp} className="text-lg text-[#80978F]">
+            <motion.h3 variants={fadeUp} className="text-lg text-[#80978F] text-center lg:text-left">
               Interests
             </motion.h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
               {[
                 "Software Development",
                 "Web Technologies",
@@ -123,7 +123,7 @@ const About = () => {
                   className="flex items-center"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#27CBCB] mr-2" />
-                  <span className="text-sm text-gray-400">{item}</span>
+                  <span className="text-xs sm:text-sm text-gray-400">{item}</span>
                 </motion.div>
               ))}
             </div>
@@ -160,20 +160,20 @@ const About = () => {
               exit="hidden"
               className="bg-[#101318] rounded-2xl w-full max-w-6xl h-[90vh] border border-gray-800 overflow-hidden"
             >
-              <div className="flex justify-between items-center p-6 border-b border-gray-800">
-                <h3 className="text-2xl font-bold text-[#27CBCB]">Resume</h3>
-                <div className="flex gap-3">
+              <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-800">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#27CBCB]">Resume</h3>
+                <div className="flex gap-2 sm:gap-3">
                   <a
                     href="/Resume.pdf"
                     target="_blank"
                     rel="noreferrer"
-                    className="px-4 py-2 bg-gray-800 rounded-lg hover:bg-gray-700"
+                    className="p-2 sm:px-4 sm:py-2 bg-gray-800 rounded-lg hover:bg-gray-700"
                   >
                     <ExternalLink size={18} />
                   </a>
                   <button
                     onClick={handleDownload}
-                    className="px-4 py-2 bg-linear-to-r from-[#27CBCB] to-[#26D868] rounded-lg cursor-pointer"
+                    className="p-2 sm:px-4 sm:py-2 bg-linear-to-r from-[#27CBCB] to-[#26D868] rounded-lg cursor-pointer"
                   >
                     <Download size={18} />
                   </button>
@@ -187,7 +187,7 @@ const About = () => {
               </div>
               <iframe
                 src="/Resume.pdf"
-                className="w-full h-full bg-white"
+                className="w-full h-[calc(90vh-80px)] sm:h-[calc(90vh-88px)] bg-white"
                 title="Resume"
               />
             </motion.div>
