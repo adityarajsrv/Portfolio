@@ -32,6 +32,7 @@ const projects = [
       "scikit-learn",
     ],
     github: "https://github.com/adityarajsrv/CareerQuill",
+    live: "https://career-quill-umber.vercel.app/",
     image: careerquillImg,
     accent: "from-[#27CBCB]/40",
   },
