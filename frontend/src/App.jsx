@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Portfolio from "./pages/Portfolio";
 import LoadingScreen from './components/LoadingScreen';
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +24,7 @@ const App = () => {
           Skip Intro
         </button>
       )}
+      <Analytics />
     </div>
   );
 };
