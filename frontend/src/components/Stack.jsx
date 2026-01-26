@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
   FaReact,
   FaNodeJs,
-  FaDocker,
   FaGitAlt,
   FaHtml5,
   FaCss3,
@@ -13,11 +12,9 @@ import {
 } from "react-icons/fa";
 import {
   SiTypescript,
-  SiRedux,
   SiTailwindcss,
   SiExpress,
   SiMongodb,
-  SiPostgresql,
   SiMysql,
   SiVercel,
   SiRender,
@@ -34,7 +31,6 @@ const categories = {
     { name: "CSS", icon: <FaCss3 /> },
     { name: "JavaScript", icon: <RiJavascriptFill /> },
     { name: "React", icon: <FaReact /> },
-    { name: "Redux", icon: <SiRedux /> },
     { name: "Tailwind", icon: <SiTailwindcss /> },
   ],
   backend: [
@@ -46,7 +42,6 @@ const categories = {
   ],
   database: [
     { name: "MongoDB", icon: <SiMongodb /> },
-    { name: "PostgreSQL", icon: <SiPostgresql /> },
     { name: "MySQL", icon: <SiMysql /> },
   ],
   devops: [
@@ -61,7 +56,6 @@ const others = [
   { name: "Python", icon: <FaPython /> },
   { name: "TypeScript", icon: <SiTypescript /> },
   { name: "Java", icon: <FaJava /> },
-  { name: "Docker", icon: <FaDocker /> },
 ];
 
 const tabs = ["all", ...Object.keys(categories)];
