@@ -7,12 +7,19 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  process.env.FRONTEND_URL
-];
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://portfolio-lilac-eight-33.vercel.app"
+    ],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
 
-app.use(cors({ origin: allowedOrigins }));
+app.options("*", cors());
+
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -30,7 +37,6 @@ app.post("/send-email", async (req, res) => {
         <h2>New Portfolio Message</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
     });
@@ -42,6 +48,6 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server running");
 });
