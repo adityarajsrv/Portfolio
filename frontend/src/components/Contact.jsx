@@ -1,177 +1,184 @@
-import { Mail, Copy, Check, ExternalLink } from "lucide-react";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { ExternalLink, Send } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
-};
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const fadeScale = {
-  hidden: { opacity: 0, scale: 0.96 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+const fade = {
+  hidden: { opacity: 0, y: 25 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const Contact = () => {
-  const [copied, setCopied] = useState(false);
-  const email = "adityarajsrvofficial@gmail.com";
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState(null);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 3000);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  const validate = () => {
+    const e = {};
+
+    if (!form.name.trim()) e.name = "Name is required";
+    else if (form.name.trim().length < 2) e.name = "Name too short";
+
+    if (!form.email.trim()) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      e.email = "Invalid email";
+
+    if (!form.message.trim()) e.message = "Message is required";
+    else if (form.message.trim().length < 10)
+      e.message = "Message too short";
+
+    setErrors(e);
+    return Object.keys(e).length === 0;
   };
 
-  const socialLinks = [
-    {
-      icon: <FaGithub className="w-5 h-5" />,
-      href: "https://github.com/adityarajsrv",
-      label: "GitHub",
-      color: "hover:text-gray-100 hover:bg-gray-800",
-      border: "border-gray-800",
-    },
-    {
-      icon: <FaLinkedin className="w-5 h-5" />,
-      href: "https://www.linkedin.com/in/adityarajsrv",
-      label: "LinkedIn",
-      color: "hover:text-blue-400 hover:bg-blue-900/20",
-      border: "border-blue-900/30",
-    },
-  ];
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validate()) return;
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${API_BASE}/send-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error();
+
+      setForm({ name: "", email: "", message: "" });
+      setToast("Message sent successfully ✓");
+    } catch {
+      setToast("Failed to send message");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <section className="px-4 sm:px-6 md:px-8 lg:ml-120 mx-auto py-8 sm:py-12 max-w-2xl">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.35 }}
-        className="relative"
-      >
-        <div className="absolute inset-0 bg-linear-to-br from-gray-900/50 to-gray-900/30 rounded-3xl -z-10" />
-        <div className="absolute inset-0 bg-[radial-linear(circle_at_30%_20%,rgba(39,203,203,0.1),transparent_50%)] -z-10" />
-        <div className="text-center space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl border border-gray-800/50 bg-linear-to-b from-gray-900/40 to-gray-900/20 backdrop-blur-sm">
-          <div className="space-y-3 sm:space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700/50">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-xs text-gray-300">
-                Available for opportunities
-              </span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-gray-100 to-gray-400">
-              Get in Touch
-            </h2>
-            <p className="text-gray-400 mx-auto text-base sm:text-lg max-w-md">
-              Open to collaborations, interesting projects, and new
-              opportunities
-            </p>
-          </div>
-          <motion.div
-            variants={fadeScale}
-            className="relative max-w-sm mx-auto"
-          >
-            <motion.button
-              onClick={handleCopyEmail}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group w-full"
+    <section className="relative px-4 sm:px-6 md:px-8 mx-auto py-20 max-w-6xl">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(39,203,203,0.08),transparent_40%)]" />
+
+      <div className="grid md:grid-cols-2 gap-16 items-center">
+        <motion.div variants={fade} initial="hidden" whileInView="show">
+          <h2 className="text-5xl font-bold leading-tight text-transparent bg-clip-text bg-linear-to-r from-gray-100 to-gray-400">
+            Let’s work together
+          </h2>
+
+          <p className="mt-6 text-gray-400 max-w-md text-lg">
+            Have an opportunity or project in mind?
+            Send a quick message — I usually respond within 24 hours.
+          </p>
+
+          <div className="mt-10 space-y-4">
+            <motion.a
+              whileHover={{ x: 6 }}
+              href="https://github.com/adityarajsrv"
+              target="_blank"
+              className="flex items-center gap-4 p-4 rounded-xl border border-gray-800 bg-gray-900/40 backdrop-blur-sm"
             >
-              <div className="flex items-center justify-between p-3 sm:p-4 rounded-xl border border-gray-800 bg-linear-to-r from-gray-900/50 to-gray-800/30 hover:border-gray-700 transition-all duration-300">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gray-700/50 transition-colors">
-                    <Mail className="w-4 h-4 text-gray-400 group-hover:text-gray-300" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-xs sm:text-sm text-gray-400">Email</p>
-                    <p className="text-gray-200 font-medium text-sm sm:text-base truncate max-w-45 sm:max-w-none">{email}</p>
-                  </div>
-                </div>
-                <div
-                  className={`p-2 rounded-lg transition-all duration-300 ${
-                    copied
-                      ? "bg-emerald-900/30 text-emerald-400"
-                      : "bg-gray-800/50 text-gray-400 group-hover:bg-gray-700/50 group-hover:text-gray-300"
-                  }`}
-                >
-                  {copied ? (
-                    <Check className="w-4 h-4" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </div>
+              <FaGithub className="text-2xl" />
+              <div>
+                <p className="font-medium text-gray-200">GitHub</p>
+                <p className="text-sm text-gray-400">Explore my projects</p>
               </div>
-            </motion.button>
-            {copied && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-3 py-1.5 rounded-lg bg-emerald-900/20 border border-emerald-800/30 text-emerald-400 text-xs"
-              >
-                Copied to clipboard
-              </motion.div>
+              <ExternalLink className="ml-auto opacity-60" />
+            </motion.a>
+
+            <motion.a
+              whileHover={{ x: 6 }}
+              href="https://linkedin.com/in/adityarajsrv"
+              target="_blank"
+              className="flex items-center gap-4 p-4 rounded-xl border border-gray-800 bg-gray-900/40 backdrop-blur-sm"
+            >
+              <FaLinkedin className="text-2xl text-blue-400" />
+              <div>
+                <p className="font-medium text-gray-200">LinkedIn</p>
+                <p className="text-sm text-gray-400">Let’s connect</p>
+              </div>
+              <ExternalLink className="ml-auto opacity-60" />
+            </motion.a>
+          </div>
+        </motion.div>
+
+        <motion.form
+          variants={fade}
+          initial="hidden"
+          whileInView="show"
+          onSubmit={handleSubmit}
+          className="p-8 rounded-3xl border border-gray-800 bg-linear-to-b from-gray-900/60 to-gray-900/30 backdrop-blur-xl space-y-5"
+        >
+          <h3 className="text-2xl font-semibold text-gray-200">
+            Send a Message
+          </h3>
+
+          <div>
+            <input
+              name="name"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full p-3 rounded-lg bg-gray-900 border border-gray-800 focus:border-emerald-500"
+            />
+            {errors.name && (
+              <p className="text-sm text-red-400 mt-1">{errors.name}</p>
             )}
-          </motion.div>
-          <motion.div variants={fadeUp} className="space-y-3 sm:space-y-4">
-            <p className="text-gray-500 text-sm">Connect elsewhere</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-3">
-              {socialLinks.map((link) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -2 }}
-                  className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border ${link.border} bg-gray-900/30 backdrop-blur-sm ${link.color} transition-all duration-300 group`}
-                >
-                  <div className="transition-transform group-hover:scale-110">
-                    {link.icon}
-                  </div>
-                  <span className="text-sm font-medium text-gray-300 group-hover:text-current">
-                    {link.label}
-                  </span>
-                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-          <motion.div
-            variants={fadeUp}
-            className="pt-4 sm:pt-6 border-t border-gray-800/30"
-          >
-            <div className="inline-flex flex-col sm:flex-row items-center gap-2 text-sm text-gray-400">
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                <span>Currently open to:</span>
-              </div>
-              <span className="text-gray-300 text-center sm:text-left">
-                Full-time roles • Contract work • Collaborations
-              </span>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
+          </div>
+
+          <div>
+            <input
+              name="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full p-3 rounded-lg bg-gray-900 border border-gray-800 focus:border-emerald-500"
+            />
+            {errors.email && (
+              <p className="text-sm text-red-400 mt-1">{errors.email}</p>
+            )}
+          </div>
+
+          <div>
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Your Message"
+              value={form.message}
+              onChange={handleChange}
+              className="w-full p-3 rounded-lg bg-gray-900 border border-gray-800 focus:border-emerald-500"
+            />
+            {errors.message && (
+              <p className="text-sm text-red-400 mt-1">{errors.message}</p>
+            )}
+          </div>
+
+          <button className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-medium">
+            <Send className="w-4 h-4" />
+            {loading ? "Sending..." : "Send Message"}
+          </button>
+
+          {toast && (
+            <p className="text-sm text-center text-gray-300">{toast}</p>
+          )}
+        </motion.form>
+      </div>
     </section>
   );
-};
+}
 
 export default Contact;
