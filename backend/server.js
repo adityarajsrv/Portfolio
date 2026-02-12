@@ -6,7 +6,13 @@ import { Resend } from "resend";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL
+];
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY);
