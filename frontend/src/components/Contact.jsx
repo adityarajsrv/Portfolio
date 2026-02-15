@@ -82,7 +82,7 @@ const Contact = () => {
 
           <p className="mt-6 text-gray-400 max-w-md text-lg">
             Have an opportunity or project in mind?
-            Send a quick message — I usually respond within 24 hours.
+            Send a quick message - I usually respond within 24 hours.
           </p>
 
           <div className="mt-10 space-y-4">
@@ -167,7 +167,7 @@ const Contact = () => {
             )}
           </div>
 
-          <button className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-medium">
+          <button className="cursor-pointer w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-medium">
             <Send className="w-4 h-4" />
             {loading ? "Sending..." : "Send Message"}
           </button>

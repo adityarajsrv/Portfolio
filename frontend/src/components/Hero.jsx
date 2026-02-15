@@ -30,10 +30,10 @@ const Hero = () => {
       <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[#80978F] leading-tight">
         <TextType
           text={[
-            "Building things that matter.",
-            "Creating digital experiences.",
-            "Solving real-world problems.",
-            "Crafting elegant solutions.",
+            "Building things that just work.",
+            "Keeping the code clean.",
+            "Solving problems properly.",
+            "Shipping without the drama.",
           ]}
           typingSpeed={75}
           pauseDuration={1500}
@@ -43,9 +43,10 @@ const Hero = () => {
           cursorCharacter="|"
         />
       </h2>
-      <p className="text-[#80978F] text-base md:text-lg lg:text-xl mt-2 lg:mt-3 w-full lg:w-[50%]">
-        I craft clean, thoughtful digital experiences. Currently focused on
-        building tools that help people work better and live easier.
+      <p className="text-[#80978F] text-base md:text-lg lg:text-xl mt-2 lg:mt-3 w-full lg:w-[60%]">
+        I build end-to-end web applications, connecting intuitive frontends with
+        scalable backend systems focused on clean architecture, performance, and
+        production-ready results.
       </p>
       <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-5 mt-3">
         <button
@@ -65,7 +66,7 @@ const Hero = () => {
       </div>
       <div className="hidden lg:block absolute left-20 top-40 opacity-10">
         <div className="text-8xl font-mono text-gray-500">{`{ }`}</div>
-      </div> 
+      </div>
       <div className="hidden md:block absolute right-10 md:right-20 lg:right-40 bottom-20 md:bottom-32 lg:bottom-40">
         <div className="flex space-x-3 opacity-20">
           <div className="w-2 h-8 bg-[#27CBCB] rounded-full animate-pulse"></div>
@@ -105,8 +106,7 @@ const Hero = () => {
           </div>
         </div>
         <p className="text-black text-xs italic font-medium leading-relaxed">
-          From concept to deployment, solve challenges, and build systems that
-          scale.
+          Design with intent. Develop with discipline.
         </p>
         <div className="mt-4 flex items-center">
           <div className="w-8 h-px bg-yellow-600 mr-3"></div>
@@ -120,7 +120,9 @@ const Hero = () => {
           <div className="font-mono text-xs md:text-sm text-gray-500">
             {"// developer"}
           </div>
-          <div className="font-mono text-xs md:text-sm text-gray-500">{"// designer"}</div>
+          <div className="font-mono text-xs md:text-sm text-gray-500">
+            {"// designer"}
+          </div>
           <div className="font-mono text-xs md:text-sm text-gray-500">
             {"// problem-solver"}
           </div>

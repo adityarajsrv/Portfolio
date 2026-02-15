@@ -94,7 +94,7 @@ const Stack = () => {
         </div>
         <div className="w-full lg:w-60 bg-gray-900/40 backdrop-blur-sm py-4 px-5 mr-35 rounded-xl border border-gray-700/40">
           <p className="text-gray-200 text-sm italic leading-relaxed mb-3">
-            &quot;Use boring technology. Build something that lasts.&quot;
+            &quot;Use boring tech. Build something that lasts.&quot;
           </p>
           <div className="flex items-center">
             <div className="flex-1">
