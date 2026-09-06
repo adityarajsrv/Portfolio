@@ -7,9 +7,34 @@ import { FaGithub } from "react-icons/fa";
 import careerquillImg from "../assets/careerquill.png";
 import flowmindImg from "../assets/flowmind.png";
 import proctorlyImg from "../assets/proctorly.png";
-import hiremeImg from "../assets/hireme.png";
+import hirelane from "../assets/hirelane.png";
 
 const projects = [
+  {
+    title: "HireLane",
+    subtitle: "Job Application Automation & Tracking Platform",
+    description:
+      "Chrome extension automating job applications across 5 ATS platforms, with a unified dashboard tracking status, deadlines, and JD-resume match scores.",
+    highlights: [
+      "5 ATS platforms supported (Workday, Greenhouse, Wellfound, Internshala, Naukri)",
+      "3-layer field classification (static + cache + Gemini fallback)",
+      "Multi-stage Workday flow handling with stable session IDs",
+    ],
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Redis",
+      "Gemini API",
+      "Chrome Extension APIs",
+      "JWT",
+    ],
+    github: "https://github.com/adityarajsrv/HireLane",
+    live: "",
+    image: hirelane,
+    accent: "from-orange-400/40",
+  },
   {
     title: "CareerQuill",
     subtitle: "Resume Generation & ATS Scoring Platform",
@@ -84,22 +109,6 @@ const projects = [
     live: "https://proctorly-kappa.vercel.app",
     image: proctorlyImg,
     accent: "from-amber-400/40",
-  },
-  {
-    title: "HireMe",
-    subtitle: "MERN Recruitment Platform Prototype",
-    description:
-      "Full-stack recruitment platform with secure authentication, profile management, and role-based access.",
-    highlights: [
-      "JWT auth & RBAC",
-      "Profile completion tracking",
-      "Cloudinary uploads",
-    ],
-    tech: ["React", "Node.js", "Express", "MongoDB", "JWT", "Cloudinary"],
-    github: "https://github.com/adityarajsrv/HireMe",
-    live: "https://hire-me-inky.vercel.app",
-    image: hiremeImg,
-    accent: "from-cyan-400/40",
   },
 ];
 
