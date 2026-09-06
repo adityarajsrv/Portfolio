@@ -31,7 +31,7 @@ const projects = [
       "JWT",
     ],
     github: "https://github.com/adityarajsrv/HireLane",
-    live: "",
+    live: "https://hire-lane-dun.vercel.app/",
     image: hirelane,
     accent: "from-orange-400/40",
   },
